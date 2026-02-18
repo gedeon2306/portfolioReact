@@ -27,10 +27,10 @@ const Contact: React.FC = () => {
   };
 
   return (
-    <div className="m-30 p-20" id="Contact">
+    <div className="m-4 md:m-30 md:p-20 p-4" id="Contact">
       <Title title="Me Contacter" />
       <div className="flex justify-center">
-        <form ref={form} onSubmit={sendEmail} className="fieldset bg-base-200 border-base-300 rounded-box w-xl border p-4 mt-4 space-y-4">
+        <form ref={form} onSubmit={sendEmail} className="fieldset bg-base-200 border-base-300 rounded-box w-full md:w-xl border p-6 md:p-4 mt-4 space-y-5">
 
           <label className="floating-label">
             <span>Votre Nom</span>

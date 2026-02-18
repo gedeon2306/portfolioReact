@@ -18,12 +18,10 @@ const Contact: React.FC = () => {
     const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
 
     emailjs.sendForm(serviceId, templateId, form.current, publicKey)
-      .then((result) => {
-          // console.log('Succès:', result.text);
+      .then(() => {
           alert('Message envoyé avec succès !');
           form.current?.reset(); // Réinitialise le formulaire
-      }, (error) => {
-          // console.error('Erreur:', error.text);
+      }, () => {
           alert("Une erreur est survenue lors de l'envoi.");
       });
   };

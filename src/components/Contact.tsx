@@ -34,13 +34,13 @@ const Contact: React.FC = () => {
 
           <label className="floating-label">
             <span>Votre Nom</span>
-            <input type="text" name="user_name" className="input validator w-full" placeholder="MALONGA Armel..." required />
+            <input type="text" name="from_name" className="input validator w-full" placeholder="MALONGA Armel..." required />
             <p className="validator-hint hidden">Champ obligatoir</p>
           </label>
 
           <label className="floating-label">
             <span>Email</span>
-            <input type="email" name="user_email" className="input validator w-full" placeholder="email@domaine.com" required />
+            <input type="email" name="from_email" className="input validator w-full" placeholder="email@domaine.com" required />
             <p className="validator-hint hidden">Email invalide</p>
           </label>
 

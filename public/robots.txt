@@ -1,0 +1,6 @@
+# Autoriser tous les robots (Google, Bing, etc.) à explorer le site
+User-agent: *
+Allow: /
+
+# Indiquer l'emplacement exact de votre sitemap
+Sitemap: https://portfolio-jihreldev.vercel.app/sitemap.xml

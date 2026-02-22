@@ -5,10 +5,12 @@ import Skills from "./components/Skills";
 import Projects from "./components/Projects";
 import Footer from "./components/Footer";
 import Contact from "./components/Contact";
+import { Toaster } from "react-hot-toast";
 
 function App() {
   return (
     <>
+      <div><Toaster/></div>
       <div className="p-5 md:px-[10%]">
         <NavBar />
         <Home/>

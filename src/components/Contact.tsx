@@ -1,13 +1,16 @@
 import { Send } from "lucide-react";
 import Title from "./Title";
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import emailjs from '@emailjs/browser';
+import toast from "react-hot-toast";
 
 const Contact: React.FC = () => {
   // On précise le type HTMLFormElement pour la référence
   const form = useRef<HTMLFormElement>(null);
+  const [loading, setLoading] = useState(false)
 
-  const sendEmail = (e: React.FormEvent<HTMLFormElement>) => {
+  const sendEmail = async (e: React.FormEvent<HTMLFormElement>) => {
+    setLoading(true)
     e.preventDefault();
 
     if (!form.current) return;
@@ -17,13 +20,17 @@ const Contact: React.FC = () => {
     const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
     const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
 
-    emailjs.sendForm(serviceId, templateId, form.current, publicKey)
-      .then(() => {
-          alert('Message envoyé avec succès !');
-          form.current?.reset(); // Réinitialise le formulaire
-      }, () => {
-          alert("Une erreur est survenue lors de l'envoi.");
-      });
+    try {
+
+      await emailjs.sendForm(serviceId, templateId, form.current, publicKey);
+      toast.success('Message envoyé avec succès !');
+      form.current?.reset();
+      
+    } catch (error) {
+      toast.error("Une erreur est survenue lors de l'envoi.");
+    } finally {
+      setLoading(false)
+    }
   };
 
   return (
@@ -50,8 +57,15 @@ const Contact: React.FC = () => {
             <p className="validator-hint hidden">Champ obligatoir</p>
           </label>
 
-          <button className="btn btn-soft bg-purple-600 hover:bg-base-300 hover:text-purple-600 mt-4" type="submit">
-            Envoyer <Send className="w-4 h-4"/>
+          <button disabled={loading} className="btn btn-soft bg-purple-600 hover:bg-base-300 hover:text-purple-600 mt-4" type="submit">
+            {loading ? (
+              <span className="loading loading-spinner loading-sm text-white"></span>
+            ) : (
+              <>
+                <Send className="w-4 h-4" />
+                Envoyer
+              </>
+            )}
           </button>
         </form>
       </div>
